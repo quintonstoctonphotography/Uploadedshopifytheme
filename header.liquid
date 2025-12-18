@@ -1,0 +1,66 @@
+<!-- Header Navigation Section -->
+<header class="nav-header" data-section="{{ section.id }}">
+    <div class="nav-left">
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="logo">
+            <a href="{{ shop.url }}" class="logo-link">
+                <span class="white">{{ settings.business_name | split: ' ' | first }}</span>
+                <span class="red">{{ settings.business_name | split: ' ' | last }}</span>
+            </a>
+        </div>
+    </div>
+    
+    <nav class="nav-right">
+        <ul class="nav-links">
+            <li><a href="{{ shop.url }}">Home</a></li>
+            <li><a href="/pages/about">About</a></li>
+            <li><a href="/pages/mission">Our Mission</a></li>
+            <li><a href="/collections/portfolio">Portfolio</a></li>
+            <li><a href="/collections/all">Collections</a></li>
+            <li><a href="/pages/services">Services</a></li>
+            <li><a href="/pages/reviews">Reviews</a></li>
+            <li><a href="/pages/affiliate">Affiliate Links</a></li>
+            <li><a href="/pages/social">Social</a></li>
+            <li><a href="/pages/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Mobile Drawer Navigation -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<nav class="drawer-nav" id="drawerNav">
+    <div class="drawer-header">
+        <div class="logo">
+            <span class="white">{{ settings.business_name | split: ' ' | first }}</span>
+            <span class="red">{{ settings.business_name | split: ' ' | last }}</span>
+        </div>
+        <button class="drawer-close" id="drawerClose">&times;</button>
+    </div>
+    <ul class="drawer-links">
+        <li><a href="{{ shop.url }}">Home</a></li>
+        <li><a href="/pages/about">About</a></li>
+        <li><a href="/pages/mission">Our Mission</a></li>
+        <li><a href="/collections/portfolio">Portfolio</a></li>
+        <li><a href="/collections/merchandise">Merchandise</a></li>
+        <li><a href="/pages/services">Services</a></li>
+        <li><a href="/collections/presets">Digital Presets</a></li>
+        <li><a href="/pages/affiliate">Affiliate Links</a></li>
+        <li><a href="/pages/social">Social</a></li>
+        <li><a href="/pages/contact">Contact</a></li>
+    </ul>
+    <div class="drawer-social">
+        {% render 'footer-social' %}
+    </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "target": "section",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "hero_highlight": "Stocton",
+        "hero_subtitle": "Based in Glasgow, Kentucky - creating designs that help define you and taking photographs that help refine you.",
+        "primary_button_text": "Collections",
+        "primary_button_link": "/collections/all",
+        "secondary_button_text": "Learn More",
+        "secondary_button_link": "/pages/about"
+      }
+    }
+  },
+  "order": ["hero"]
+}

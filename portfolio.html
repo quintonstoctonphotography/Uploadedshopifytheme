@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Quinton Stocton Photography</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-portfolio {
+            margin-top: 80px;
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            background: radial-gradient(ellipse at center, #BA0606 0%, #000000 70%);
+        }
+
+        .hero-portfolio h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .hero-portfolio h1 .red {
+            color: #BA0606;
+        }
+
+        .hero-portfolio p {
+            font-size: 1.2rem;
+            color: #E5E0E0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .filter-section {
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            background: #000;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.8rem;
+            background: #474747;
+            color: #fff;
+            border: 2px solid #474747;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #BA0606;
+            border-color: #BA0606;
+            transform: translateY(-2px);
+        }
+
+        .portfolio-grid {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            height: 350px;
+            background: #474747;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(186, 6, 6, 0.5);
+        }
+
+        .portfolio-item::before {
+            content: 'IMAGE PLACEHOLDER';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-overlay p {
+            color: #E5E0E0;
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: #0a0a0a;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .cta-section h2 .red {
+            color: #BA0606;
+        }
+
+        .cta-section p {
+            color: #E5E0E0;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #BA0606;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #8B0000;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-portfolio h1 {
+                font-size: 2.2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Drawer Navigation -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <nav class="drawer-nav" id="drawerNav">
+        <div class="drawer-header">
+            <div class="logo">
+                <span class="white">Quinton Stocton</span>
+                <span class="red">Photography</span>
+            </div>
+            <button class="drawer-close" id="drawerClose">&times;</button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#collections">Collections</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+            <li><a href="affiliate.html">Affiliate Links</a></li>
+            <li><a href="social.html">Social</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="social-icons" style="padding: 2rem 1.5rem; border-top: 1px solid #474747; display: flex; justify-content: center; gap: 1rem;"><a href="https://facebook.com/quintonstoctonphotography" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com/quintonstoctonphotography" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@quinton.s.photography" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a><a href="https://x.com/qsphotographyky" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a><a href="https://www.linkedin.com/in/quintonstoctonphotography" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://youtube.com/@quintonstoctonphotography" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a><a href="https://pinterest.com/quintonstoctonphotography" target="_blank" title="Pinterest"><i class="fab fa-pinterest-p"></i></a><a href="https://linktr.ee/quintonstoctonphotography" target="_blank" title="Linktree"><i class="fas fa-link"></i></a></div>
+    </nav>
+
+    <nav class="nav-header">
+        <div class="nav-left">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo">
+                <span class="white">Quinton Stocton</span>
+                <span class="red">Photography</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#collections">Collections</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+            <li><a href="affiliate.html">Affiliate Links</a></li>
+            <li><a href="social.html">Social</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-portfolio">
+        <h1><span class="white">Our</span> <span class="red">Portfolio</span></h1>
+        <p>Explore our work across weddings, portraits, events, branding, and more.</p>
+    </section>
+
+    <section class="filter-section">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Work</button>
+            <button class="filter-btn" data-filter="latest">Latest Projects</button>
+            <button class="filter-btn" data-filter="portraits">Portraits</button>
+            <button class="filter-btn" data-filter="boudoir">Boudoir</button>
+            <button class="filter-btn" data-filter="wedding">Weddings</button>
+            <button class="filter-btn" data-filter="events">Events</button>
+            <button class="filter-btn" data-filter="branding">Logo Design/Branding</button>
+        </div>
+    </section>
+
+    <section class="portfolio-grid" id="portfolioGrid">
+        <div class="portfolio-item" data-category="wedding">
+            <div class="portfolio-overlay">
+                <h3>Wedding 1</h3>
+                <p>Glasgow, KY</p>
+            </div>
+        </div>
+        <div class="portfolio-item" data-category="portraits">
+            <div class="portfolio-overlay">
+                <h3>Portrait Session</h3>
+                <p>Lifestyle Photography</p>
+            </div>
+        </div>
+        <div class="portfolio-item" data-category="boudoir">
+            <div class="portfolio-overlay">
+                <h3>Boudoir Session</h3>
+                <p>Empowering Portraits</p>
+            </div>
+        </div>
+        <div class="portfolio-item" data-category="events">
+            <div class="portfolio-overlay">
+                <h3>Corporate Event</h3>
+                <p>Professional Coverage</p>
+            </div>
+        </div>
+        <div class="portfolio-item" data-category="branding">
+            <div class="portfolio-overlay">
+                <h3>Brand Identity</h3>
+                <p>Logo & Visual Design</p>
+            </div>
+        </div>
+        <div class="portfolio-item" data-category="wedding">
+            <div class="portfolio-overlay">
+                <h3>Wedding 2</h3>
+                <p>Barren County, KY</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2><span class="white">Like What You</span> <span class="red">See?</span></h2>
+        <p>Let's create something amazing together.</p>
+        <a href="index.html#contact" class="cta-btn">Book Now</a>
+    </section>
+
+    <footer>
+        <div class="footer-logo">
+            <span class="white">Quinton Stocton</span>
+            <span class="red">Photography</span>
+        </div>
+        <p style="color: #E5E0E0; margin-bottom: 1rem;">Capturing Moments, Crafting Memories; Preserving The Essence Of You.</p>
+        
+        <nav class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="index.html#collections">Collections</a>
+            <a href="index.html#services">Services</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="index.html#reviews">Reviews</a>
+            <a href="affiliate.html">Affiliate Links</a>
+            <a href="social.html">Social</a>
+        </nav>
+
+        <div class="social-icons" id="social">
+            <a href="https://facebook.com/quintonstoctonphotography" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/quintonstoctonphotography" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@quinton.s.photography" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://x.com/qsphotographyky" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/quintonstoctonphotography" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://youtube.com/@quintonstoctonphotography" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://pinterest.com/quintonstoctonphotography" target="_blank" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+            <a href="https://linktr.ee/quintonstoctonphotography" target="_blank" title="Linktree"><i class="fas fa-link"></i></a>
+        </div>
+
+        <div class="footer-info">
+            <p>Based in Glasgow, Kentucky</p>
+            <p>© 2025 Quinton Stocton Photography. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

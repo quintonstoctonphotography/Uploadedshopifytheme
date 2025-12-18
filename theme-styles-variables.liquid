@@ -1,0 +1,146 @@
+{% style %}
+  {%- liquid
+    assign primary_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+    assign primary_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+    assign primary_font_bold_italic = primary_font_bold | font_modify: 'style', 'italic'
+  %}
+
+  {{ settings.type_body_font | font_face: font_display: 'swap' }}
+  {{ primary_font_bold | font_face: font_display: 'swap' }}
+  {{ primary_font_italic | font_face: font_display: 'swap' }}
+  {{ primary_font_bold_italic | font_face: font_display: 'swap' }}
+
+  {% if settings.type_heading_font != settings.type_body_font %}
+    {%- liquid
+      assign heading_font_bold = settings.type_heading_font | font_modify: 'weight', 'bold'
+      assign heading_font_italic = settings.type_heading_font | font_modify: 'style', 'italic'
+      assign heading_font_bold_italic = heading_font_bold | font_modify: 'style', 'italic'
+    %}
+
+    {{ settings.type_heading_font | font_face: font_display: 'swap' }}
+    {{ heading_font_bold | font_face: font_display: 'swap' }}
+    {{ heading_font_italic | font_face: font_display: 'swap' }}
+    {{ heading_font_bold_italic | font_face: font_display: 'swap' }}
+  {% endif %}
+
+  :root {
+    /* Z-Index / Layering */
+    --layer-section-background: -2;
+    --layer-lowest: -1;
+    --layer-base: 0;
+    --layer-flat: 1;
+    --layer-raised: 2;
+    --layer-heightened: 4;
+    --layer-sticky: 8;
+    --layer-header-menu: 12;
+    --layer-overlay: 16;
+    --layer-menu-drawer: 18;
+    --layer-temporary: 20;
+
+    /* Font families */
+    --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    --font-body-style: {{ settings.type_body_font.style }};
+    --font-body-weight: {{ settings.type_body_font.weight }};
+    --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+
+    --font-heading-family: {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
+    --font-heading-style: {{ settings.type_heading_font.style }};
+    --font-heading-weight: {{ settings.type_heading_font.weight }};
+
+    /* Color scheme */
+    --color-primary: {{ settings.color_primary.red }},{{ settings.color_primary.green }},{{ settings.color_primary.blue }};
+    --color-secondary: {{ settings.color_secondary.red }},{{ settings.color_secondary.green }},{{ settings.color_secondary.blue }};
+    --color-text: {{ settings.color_text.red }},{{ settings.color_text.green }},{{ settings.color_text.blue }};
+    --color-background: {{ settings.color_background.red }},{{ settings.color_background.green }},{{ settings.color_background.blue }};
+
+    /* Spacing */
+    --spacing-base: 1rem;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+
+    /* Border radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Typography scale */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+
+    /* Line heights */
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+
+    /* Page width */
+    --page-width: {{ settings.page_width | divided_by: 10 }}rem;
+  }
+
+  body {
+    font-family: var(--font-body-family);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+    color: rgb(var(--color-text));
+    background-color: rgb(var(--color-background));
+    line-height: var(--line-height-normal);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+  }
+
+  a {
+    color: rgb(var(--color-primary));
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  a:hover {
+    color: rgb(var(--color-secondary));
+  }
+
+  button, .btn {
+    transition: all var(--transition-base);
+    cursor: pointer;
+  }
+
+  /* Utility classes */
+  .container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+  }
+
+  .section-padding {
+    padding: var(--spacing-3xl) var(--spacing-lg);
+  }
+
+  @media screen and (max-width: 768px) {
+    :root {
+      --spacing-3xl: 2rem;
+    }
+
+    .section-padding {
+      padding: var(--spacing-2xl) var(--spacing-md);
+    }
+  }
+{% endstyle %}

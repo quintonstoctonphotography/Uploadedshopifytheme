@@ -1,0 +1,154 @@
+<!-- Hero Banner Section - Customizable in Shopify Theme Editor -->
+<section class="hero hero-{{ section.id }}" data-section="{{ section.id }}">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      {{ section.settings.hero_title | escape }}
+      {% if section.settings.hero_highlight %}
+        <span class="hero-highlight">{{ section.settings.hero_highlight | escape }}</span>
+      {% endif %}
+    </h1>
+    
+    {% if section.settings.hero_subtitle %}
+      <p class="hero-subtitle">{{ section.settings.hero_subtitle }}</p>
+    {% endif %}
+    
+    {% if section.settings.enable_buttons %}
+      <div class="cta-buttons">
+        {% if section.settings.primary_button_text %}
+          <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary">
+            {{ section.settings.primary_button_text | escape }}
+          </a>
+        {% endif %}
+        
+        {% if section.settings.secondary_button_text %}
+          <a href="{{ section.settings.secondary_button_link }}" class="btn btn-secondary">
+            {{ section.settings.secondary_button_text | escape }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    padding: var(--spacing-3xl) var(--spacing-lg);
+    background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-secondary)) 70%);
+    text-align: center;
+    color: white;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero-title {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--spacing-lg);
+    line-height: var(--line-height-tight);
+  }
+
+  .hero-highlight {
+    color: rgb(var(--color-primary));
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-lg);
+    margin-bottom: var(--spacing-2xl);
+    line-height: var(--line-height-relaxed);
+    opacity: 0.95;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero {
+      min-height: 60vh;
+      padding: var(--spacing-2xl) var(--spacing-md);
+    }
+
+    .hero-title {
+      font-size: var(--text-2xl);
+    }
+
+    .hero-subtitle {
+      font-size: var(--text-base);
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Who is Quinton"
+    },
+    {
+      "type": "text",
+      "id": "hero_highlight",
+      "label": "Highlighted Text",
+      "default": "Stocton?"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Subtitle",
+      "default": "Based in Glasgow, Kentucky - creating designs that help define you and taking photographs that help refine you."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_buttons",
+      "label": "Show Buttons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary Button Text",
+      "default": "Collections"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link",
+      "default": "/pages/about"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

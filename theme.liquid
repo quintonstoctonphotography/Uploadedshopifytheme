@@ -1,162 +1,91 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page_title }}{% if current_tags %} | {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} | {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}</title>
-  
-  {% if page_description %}
-    <meta name="description" content="{{ page_description | escape }}">
-  {% endif %}
+<html class="js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_scheme_1_bg.rgb }}">
+    <link rel="canonical" href="{{ canonical_url }}">
 
-  <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
 
-  {% if settings.favicon %}
-    <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
-  {% endif %}
+    {%- unless settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
 
-  <!-- Preconnect to critical domains -->
-  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
 
-  {{ content_for_header }}
+    <meta name="keywords" content="photographer Glasgow Kentucky, wedding photography, branding, logo design, Lightroom presets, portrait photography">
+    <meta name="author" content="Quinton Stocton Photography">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 
-  <style>
-    :root {
-      --qs-deep-charcoal: #1a1a1a;
-      --qs-soft-cream: #f4f1ea;
-      --qs-warm-gold: #d4af37;
-      --qs-slate-gray: #4a5568;
-      --qs-muted-sage: #8b9f8f;
-      --qs-rich-burgundy: #722f37;
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:title" content="{% if page_title %}{{ page_title }}{% else %}{{ shop.name }}{% endif %}">
+    <meta property="og:description" content="{{ page_description | default: 'Professional photography and design services in Glasgow, Kentucky' | escape }}">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Quinton Stocton Photography">
+    <meta name="twitter:description" content="Professional photography and design services in Glasgow, KY">
 
-      --font-heading: 'Cinzel', serif;
-      --font-body: 'Cormorant Garamond', serif;
+    {% render 'theme-styles-variables' %}
+
+    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+    {{ content_for_header }}
+
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "LocalBusiness",
+      "name": "{{ settings.business_name | default: 'Quinton Stocton Photography' }}",
+      "description": "{{ settings.business_description | default: 'Professional photography and design services featuring wedding photography, branding, digital design, and Lightroom presets.' }}",
+      "image": "{{ settings.business_image | image_url }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "{{ settings.business_city | default: 'Glasgow' }}",
+        "addressRegion": "{{ settings.business_state | default: 'KY' }}",
+        "postalCode": "{{ settings.business_zip | default: '42141' }}",
+        "addressCountry": "US"
+      },
+      "telephone": "{{ settings.business_phone | default: '+1-270-283-7950' }}",
+      "email": "{{ settings.business_email | default: 'customersupport@quintonstoctonphotography.com' }}",
+      "url": "{{ shop.url }}",
+      "priceRange": "{{ settings.business_price_range | default: '$$$' }}",
+      "areaServed": ["KY", "TN", "US"],
+      "serviceType": ["Photography", "Branding", "Design"]
     }
+    </script>
+  </head>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <body class="color-{{ settings.color_scheme }}">
+    {% section 'header' %}
 
-    body {
-      font-family: var(--font-body);
-      background-color: var(--qs-deep-charcoal);
-      color: var(--qs-soft-cream);
-      line-height: 1.8;
-      font-size: 18px;
-    }
+    <main role="main" id="MainContent" class="content-for-layout">
+      {{ content_for_layout }}
+    </main>
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-    }
+    {% section 'footer' %}
 
-    a {
-      color: var(--qs-warm-gold);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: var(--qs-soft-cream);
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Header Styles */
-    .site-header {
-      background: rgba(26, 26, 26, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 1.5rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .site-header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .site-logo {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--qs-warm-gold);
-      letter-spacing: 0.1em;
-    }
-
-    .site-nav ul {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .site-nav a {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--qs-soft-cream);
-    }
-
-    /* Main Content */
-    main {
-      min-height: 60vh;
-    }
-
-    /* Utility Classes */
-    .section-padding {
-      padding: 4rem 0;
-    }
-
-    @media (max-width: 768px) {
-      .site-nav ul {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-  </style>
-</head>
-
-<body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
-  
-  <header class="site-header">
-    <div class="container">
-      <a href="/" class="site-logo">
-        {{ shop.name }}
-      </a>
-      
-      <nav class="site-nav">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/pages/portfolio">Portfolio</a></li>
-          <li><a href="/pages/about">About</a></li>
-          <li><a href="/pages/contact">Contact</a></li>
-          <li><a href="/collections/all">Shop</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="MainContent">
-    {{ content_for_layout }}
-  </main>
-
-  {% section 'footer' %}
-
-</body>
+    <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+  </body>
 </html>
