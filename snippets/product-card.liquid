@@ -1,0 +1,21 @@
+<div class="product-card">
+  <a href="{{ product.url }}">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.featured_image.alt | escape }}">
+    {% endif %}
+    <h3>{{ product.title }}</h3>
+    <p class="price">{{ product.price | money }}</p>
+    {% if product.compare_at_price %}
+      <p class="compare-price">{{ product.compare_at_price | money }}</p>
+    {% endif %}
+  </a>
+  
+  {% if product.available %}
+    <form action="/cart/add" method="post" class="add-to-cart-form">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit">Add to cart</button>
+    </form>
+  {% else %}
+    <p class="sold-out">Sold Out</p>
+  {% endif %}
+</div>

@@ -1,0 +1,29 @@
+{
+  "general": {
+    "404": {
+      "page": "Page not found",
+      "link": "Continue shopping"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Shopping Cart",
+      "remove": "Remove",
+      "update": "Update",
+      "continue_shopping": "Continue shopping",
+      "checkout": "Proceed to Checkout"
+    }
+  },
+  "products": {
+    "general": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable"
+    }
+  }
+}

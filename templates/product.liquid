@@ -1,0 +1,38 @@
+<div class="product-container">
+  <h1>{{ product.title }}</h1>
+  
+  {% if product.featured_image %}
+    <div class="product-image">
+      <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.featured_image.alt | escape }}">
+    </div>
+  {% endif %}
+  
+  <div class="product-info">
+    <p class="price">{{ product.price | money }}</p>
+    
+    {% if product.description %}
+      <div class="product-description">
+        {{ product.description }}
+      </div>
+    {% endif %}
+    
+    {% form 'product' %}
+      {% for option in product.options_with_values %}
+        <label for="Option-{{ option.position }}">
+          {{ option.name }}
+        </label>
+        <select name="options[{{ option.name }}]" id="Option-{{ option.position }}">
+          {% for value in option.values %}
+            <option value="{{ value | escape }}">{{ value }}</option>
+          {% endfor %}
+        </select>
+      {% endfor %}
+      
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      
+      <button type="submit" name="add">
+        Add to cart
+      </button>
+    {% endform %}
+  </div>
+</div>

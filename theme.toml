@@ -1,0 +1,4 @@
+name = "Shopify Theme"
+description = "A basic Shopify theme structure"
+screenshotUrl = "https://via.placeholder.com/600x400"
+supportsImageMetafields = true
