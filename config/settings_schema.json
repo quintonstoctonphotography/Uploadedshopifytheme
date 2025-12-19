@@ -1,23 +1,184 @@
-[
-  {
-    "name": "theme",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Colors"
-      },
-      {
-        "type": "color",
-        "id": "color_background",
-        "label": "Background",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "color_text",
-        "label": "Text",
-        "default": "#000000"
-      }
-    ]
-  }
-]
+{
+  "current": "Default",
+  "presets": {
+    "Default": {}
+  },
+  "sections": {
+    "header": {
+      "name": "Header",
+      "settings": []
+    },
+    "footer": {
+      "name": "Footer",
+      "settings": []
+    }
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_primary",
+      "label": "Primary Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "color_secondary",
+      "label": "Secondary Color",
+      "default": "#d4af37"
+    },
+    {
+      "type": "color",
+      "id": "color_accent",
+      "label": "Accent Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "font_heading",
+      "label": "Heading Font",
+      "default": "georgia"
+    },
+    {
+      "type": "font_picker",
+      "id": "font_body",
+      "label": "Body Font",
+      "default": "opensans"
+    },
+    {
+      "type": "range",
+      "id": "font_size_heading",
+      "label": "Heading Font Size",
+      "min": 16,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "font_size_body",
+      "label": "Body Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Brand Information"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "Quinton Stocton Photography"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description",
+      "label": "Brand Description",
+      "default": "Professional photography capturing life's most memorable moments."
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "email",
+      "id": "contact_email",
+      "label": "Email Address",
+      "default": "contact@quintonstoctonphotography.com"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Phone Number",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "contact_address",
+      "label": "Physical Address",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "contact_city_state",
+      "label": "City, State",
+      "default": ""
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "text",
+      "id": "social_instagram",
+      "label": "Instagram Handle/URL",
+      "default": "https://instagram.com/quintonstoctonphotography"
+    },
+    {
+      "type": "text",
+      "id": "social_facebook",
+      "label": "Facebook URL",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "social_twitter",
+      "label": "Twitter/X URL",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "social_tiktok",
+      "label": "TikTok URL",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "social_youtube",
+      "label": "YouTube URL",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "social_pinterest",
+      "label": "Pinterest URL",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "social_linkedin",
+      "label": "LinkedIn URL",
+      "default": ""
+    },
+    {
+      "type": "checkbox",
+      "id": "social_show_icons",
+      "label": "Display Social Media Icons",
+      "default": true
+    }
+  ]
+}
