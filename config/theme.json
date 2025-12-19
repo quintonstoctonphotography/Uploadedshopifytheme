@@ -1,0 +1,72 @@
+{
+  "name": "Quinton Stocton Photography",
+  "description": "A premium photography-focused Shopify theme showcasing high-quality imagery and professional design",
+  "author": "Quinton Stocton Photography",
+  "theme_type": "photography",
+  "version": "1.0.0",
+  "author_email": "contact@quintonstoctonphotography.com",
+  "requires_api_version": "2024-01",
+  "settings": {
+    "color_schemes": [
+      {
+        "id": "default",
+        "name": "Default",
+        "colors": {
+          "primary": "#1a1a1a",
+          "secondary": "#ffffff",
+          "accent": "#d4af37",
+          "background": "#f5f5f5",
+          "text": "#333333"
+        }
+      },
+      {
+        "id": "elegant_dark",
+        "name": "Elegant Dark",
+        "colors": {
+          "primary": "#0a0a0a",
+          "secondary": "#e8e8e8",
+          "accent": "#c9a961",
+          "background": "#1a1a1a",
+          "text": "#f0f0f0"
+        }
+      },
+      {
+        "id": "modern_light",
+        "name": "Modern Light",
+        "colors": {
+          "primary": "#ffffff",
+          "secondary": "#2c3e50",
+          "accent": "#e74c3c",
+          "background": "#ecf0f1",
+          "text": "#2c3e50"
+        }
+      },
+      {
+        "id": "sophisticated",
+        "name": "Sophisticated",
+        "colors": {
+          "primary": "#2d2d2d",
+          "secondary": "#f9f9f9",
+          "accent": "#b8956a",
+          "background": "#f0ede4",
+          "text": "#3a3a3a"
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "created_at": "2025-12-18T14:37:14Z",
+    "last_updated": "2025-12-18T14:37:14Z",
+    "category": "photography",
+    "tags": ["photography", "portfolio", "professional", "gallery", "images"],
+    "features": [
+      "Responsive image gallery",
+      "High-quality image optimization",
+      "Professional portfolio layout",
+      "Mobile-friendly design",
+      "Fast loading times",
+      "SEO optimized",
+      "Customizable color schemes"
+    ]
+  }
+}
